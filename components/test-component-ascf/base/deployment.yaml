@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/instance: test-component-ascf
     spec:
       containers:
-      - image: quay.io/psturc/test-images:ead7adc95f4742baa989866c0f3edca9
+      - image: quay.io/psturc/test-images@sha256:1ef4fa6182f7ebbaa3e402995e68dde8a361e2ab9d2b35dba242c2974bbe195d
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
