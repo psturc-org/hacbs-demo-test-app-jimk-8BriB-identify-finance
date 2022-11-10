@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: test-component-ascf
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-component-ascf
+    app.kubernetes.io/part-of: hacbs-demo-test-app-jimk
+  name: test-component-ascf
+  namespace: hacbs-e2e-bgee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: test-component-ascf
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: test-component-ascf
+    spec:
+      containers:
+      - image: quay.io/psturc/test-images:ead7adc95f4742baa989866c0f3edca9
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 8081
+        resources: {}
+status: {}
